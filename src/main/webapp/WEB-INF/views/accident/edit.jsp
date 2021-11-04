@@ -22,6 +22,13 @@
         <tr>
             <td><input type='hidden' name='type' value="<c:out value="${accident.type.id}"/>"/></td>
         </tr>
+        <tr >
+            <td><select  name="rIds" multiple>
+                <c:forEach var="rule" items="${accident.rules}" >
+                    <option selected="selected" value="${rule.id}">${rule.name}</option>
+                </c:forEach>
+            </select></td>
+        </tr>
         <tr>
             <td colspan='2'><input name="submit" type="submit" value="Сохранить" /></td>
         </tr>

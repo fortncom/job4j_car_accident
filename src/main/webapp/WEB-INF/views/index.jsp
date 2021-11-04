@@ -24,6 +24,7 @@
             <th scope="col">Причина</th>
             <th scope="col">Адрес</th>
             <th scope="col">Тип</th>
+            <th scope="col">Статьи</th>
         </tr>
         </thead>
         <tbody>
@@ -44,6 +45,11 @@
                 </td>
                 <td >
                     <c:out value="${acc.type.name}"/>
+                </td>
+                <td >
+                    <c:forEach items="${acc.rules}" var="rule">
+                    <c:out value="${rule.name}"/><br>
+                    </c:forEach>
                 </td>
             </tr>
         </c:forEach>

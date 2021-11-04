@@ -7,7 +7,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
+import ru.job4j.accident.model.Rule;
 import ru.job4j.accident.service.AccidentService;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashSet;
+import java.util.Set;
 
 @Controller
 public class AccidentControl {
@@ -20,6 +25,7 @@ public class AccidentControl {
     @GetMapping(path = "/create")
     public String create(Model model) {
         model.addAttribute("types", service.getAllAccidentTypes());
+        model.addAttribute("rules", service.getAllRules());
         return "accident/create";
     }
 
@@ -34,8 +40,15 @@ public class AccidentControl {
                        @RequestParam(name = "name") String name,
                        @RequestParam(name = "text") String text,
                        @RequestParam(name = "address") String address,
-                       @RequestParam(name = "type") Integer type) {
-        Accident accident = Accident.of(id, name, text, address, AccidentType.of(type, null));
+                       @RequestParam(name = "type") Integer type,
+                       HttpServletRequest req) {
+        String[] rIds = req.getParameterValues("rIds");
+        Set<Rule> rules = new HashSet<>();
+        for (String rId : rIds) {
+            rules.add(Rule.of(Integer.parseInt(rId), null));
+        }
+        Accident accident = Accident.of(id, name, text, address,
+                AccidentType.of(type, null), rules);
         service.save(accident);
         return "redirect:/";
     }

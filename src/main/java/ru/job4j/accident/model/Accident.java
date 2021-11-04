@@ -1,6 +1,7 @@
 package ru.job4j.accident.model;
 
 import java.util.Objects;
+import java.util.Set;
 
 public class Accident {
     private int id;
@@ -8,14 +9,17 @@ public class Accident {
     private String text;
     private String address;
     private AccidentType type;
+    private Set<Rule> rules;
 
-    public static Accident of(int id, String name, String text, String address, AccidentType type) {
+    public static Accident of(
+            int id, String name, String text, String address, AccidentType type, Set<Rule> rules) {
         Accident accident = new Accident();
         accident.id = id;
         accident.name = name;
         accident.text = text;
         accident.address = address;
         accident.type = type;
+        accident.rules = rules;
         return accident;
     }
 
@@ -59,6 +63,14 @@ public class Accident {
         this.type = type;
     }
 
+    public Set<Rule> getRules() {
+        return rules;
+    }
+
+    public void setRules(Set<Rule> rules) {
+        this.rules = rules;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -84,6 +96,7 @@ public class Accident {
                 + ", text='" + text + '\''
                 + ", address='" + address + '\''
                 + ", type='" + type + '\''
+                + ", rules='" + rules + '\''
                 + '}';
     }
 }
