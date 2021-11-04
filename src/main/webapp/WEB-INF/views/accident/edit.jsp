@@ -20,6 +20,9 @@
             <td><input type='text' name='address' value="<c:out value="${accident.address}"/>"></td>
         </tr>
         <tr>
+            <td><input type='hidden' name='type' value="<c:out value="${accident.type.id}"/>"/></td>
+        </tr>
+        <tr>
             <td colspan='2'><input name="submit" type="submit" value="Сохранить" /></td>
         </tr>
     </table>

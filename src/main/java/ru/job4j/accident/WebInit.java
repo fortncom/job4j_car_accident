@@ -28,7 +28,5 @@ public class WebInit implements WebApplicationInitializer {
         ServletRegistration.Dynamic registration = servletContext.addServlet("app", servlet);
         registration.setLoadOnStartup(1);
         registration.addMapping("/");
-        registration.addMapping("/create");
-        registration.addMapping("/save");
     }
 }

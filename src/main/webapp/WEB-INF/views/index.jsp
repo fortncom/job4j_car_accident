@@ -23,6 +23,7 @@
             <th scope="col">Название</th>
             <th scope="col">Причина</th>
             <th scope="col">Адрес</th>
+            <th scope="col">Тип</th>
         </tr>
         </thead>
         <tbody>
@@ -40,6 +41,9 @@
                 </td>
                 <td>
                     <c:out value="${acc.address}"/>
+                </td>
+                <td >
+                    <c:out value="${acc.type.name}"/>
                 </td>
             </tr>
         </c:forEach>
