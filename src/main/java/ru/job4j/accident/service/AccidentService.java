@@ -9,7 +9,11 @@ import java.util.Collection;
 @Service
 public class AccidentService {
 
-    private AccidentMem mem = new AccidentMem();
+    private AccidentMem mem;
+
+    public AccidentService(AccidentMem mem) {
+        this.mem = mem;
+    }
 
     public Collection<Accident> getAllAccidents() {
         return mem.getAll();

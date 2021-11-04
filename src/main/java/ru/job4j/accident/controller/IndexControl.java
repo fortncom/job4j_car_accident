@@ -5,11 +5,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.job4j.accident.service.AccidentService;
 
-@Controller
+@Controller()
 public class IndexControl {
+
+    private final AccidentService service;
+
+    public IndexControl(AccidentService service) {
+        this.service = service;
+    }
+
     @GetMapping("/")
     public String index(Model model) {
-        AccidentService service = new AccidentService();
         model.addAttribute("accidents", service.getAllAccidents());
         return "index";
     }
