@@ -27,11 +27,11 @@ public class AccidentService {
         return repository.getAccident(id);
     }
 
-    public void save(Accident accident) {
+    public void save(Accident accident, String[] rulesId) {
         accident.setType(getAccidentType(accident.getType().getId()));
         Set<Rule> rules = new HashSet<>();
-        for (Rule rule : accident.getRules()) {
-            rules.add(getRule(rule.getId()));
+        for (String s : rulesId) {
+            rules.add(getRule(Integer.parseInt(s)));
         }
         accident.setRules(rules);
         repository.save(accident);
