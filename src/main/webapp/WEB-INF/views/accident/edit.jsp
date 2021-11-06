@@ -22,10 +22,10 @@
         <tr>
             <td><input type='hidden' name='type' value="<c:out value="${accident.type.id}"/>"/></td>
         </tr>
-        <tr >
+        <tr>
             <td><select  name="rIds" multiple>
-                <c:forEach var="rule" items="${accident.rules}" >
-                    <option selected="selected" value="${rule.id}">${rule.name}</option>
+                <c:forEach var="rule" items="${rules}" >
+                    <option value="${rule.id}">${rule.name}</option>
                 </c:forEach>
             </select></td>
         </tr>
