@@ -29,6 +29,7 @@ public class AccidentControl {
     @GetMapping(path = "/edit")
     public String edit(Model model, @RequestParam(name = "id") Integer id) {
         model.addAttribute("accident", service.getAccident(id));
+        model.addAttribute("types", service.getAllAccidentTypes());
         model.addAttribute("rules", service.getAllRules());
         return "accident/edit";
     }
