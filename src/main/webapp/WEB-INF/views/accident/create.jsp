@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -76,7 +77,7 @@
         </tr>
         <tr >
             <td>Статьи</td>
-            <td><select name="rIds" multiple>
+            <td><select id="selectRuleId" name="rIds" multiple>
                 <c:forEach var="rule" items="${rules}" >
                     <option value="${rule.id}">${rule.name}</option>
                 </c:forEach>
@@ -84,7 +85,7 @@
         </tr>
         <tr>
             <td colspan='2'>
-                <input name="submit" id="selectRuleId" type="submit" onclick="return validate();" value="Сохранить" />
+                <input name="submit" type="submit" onclick="return validate();" value="Сохранить" />
             </td>
         </tr>
     </table>

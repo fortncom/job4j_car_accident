@@ -19,7 +19,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class HbmConfig {
 
-    @Bean
+    @Bean(name = "HbmDS")
     public DataSource ds(@Value("${jdbc.driver}") String driver,
                          @Value("${jdbc.url}") String url,
                          @Value("${jdbc.username}") String username,
@@ -32,7 +32,7 @@ public class HbmConfig {
         return ds;
     }
 
-    @Bean
+    @Bean(name = "HbmSF")
     public LocalSessionFactoryBean sessionFactory(
             @Value("${hibernate.dialect}") String dialect, DataSource ds) {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
@@ -45,7 +45,7 @@ public class HbmConfig {
         return sessionFactory;
     }
 
-    @Bean
+    @Bean(name = "Hbmhtx")
     public PlatformTransactionManager htx(SessionFactory sf) {
         HibernateTransactionManager tx = new HibernateTransactionManager();
         tx.setSessionFactory(sf);

@@ -6,7 +6,6 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
@@ -14,7 +13,6 @@ import ru.job4j.accident.model.Rule;
 import java.util.Collection;
 import java.util.function.Function;
 
-@Repository
 public class AccidentHibernate {
 
     private static final Logger LOG = LoggerFactory.getLogger(AccidentHibernate.class.getName());

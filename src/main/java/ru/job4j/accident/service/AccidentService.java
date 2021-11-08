@@ -1,32 +1,41 @@
 package ru.job4j.accident.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.AccidentHibernate;
+import ru.job4j.accident.repository.AccidentRepository;
+import ru.job4j.accident.repository.AccidentTypeRepository;
+import ru.job4j.accident.repository.RuleRepository;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class AccidentService {
 
-    private AccidentHibernate repository;
+    private final AccidentRepository repAccident;
+    private final AccidentTypeRepository repType;
+    private final RuleRepository repRule;
 
-    public AccidentService(AccidentHibernate repository) {
-        this.repository = repository;
+    public AccidentService(AccidentRepository repAccident,
+                           AccidentTypeRepository repType, RuleRepository repRule) {
+        this.repAccident = repAccident;
+        this.repType = repType;
+        this.repRule = repRule;
     }
 
     public Collection<Accident> getAllAccidents() {
-        return repository.getAllAccidents();
+        List<Accident> accidents = new ArrayList<>();
+        repAccident.findAll().forEach(accidents::add);
+        return accidents;
     }
 
     public Accident getAccident(int id) {
-        return repository.getAccident(id);
+        return repAccident.findById(id).get();
     }
 
+    @Transactional
     public void save(Accident accident, String[] rulesId) {
         accident.setType(getAccidentType(accident.getType().getId()));
         Set<Rule> rules = new HashSet<>();
@@ -34,42 +43,51 @@ public class AccidentService {
             rules.add(getRule(Integer.parseInt(s)));
         }
         accident.setRules(rules);
-        repository.save(accident);
+        repAccident.save(accident);
     }
 
     public boolean remove(Accident accident) {
-       return repository.remove(accident);
+        repAccident.delete(accident);
+        return true;
     }
 
     public Collection<AccidentType> getAllAccidentTypes() {
-        return repository.getAllAccidentTypes();
+        List<AccidentType> types = new ArrayList<>();
+        repType.findAll().forEach(types::add);
+        return types;
     }
 
     public AccidentType getAccidentType(int id) {
-        return repository.getAccidentType(id);
+        return repType.findById(id).get();
     }
 
+    @Transactional
     public void save(AccidentType type) {
-        repository.save(type);
+        repType.save(type);
     }
 
     public boolean remove(AccidentType type) {
-        return repository.remove(type);
+        repType.delete(type);
+        return true;
     }
 
     public Collection<Rule> getAllRules() {
-        return repository.getAllRules();
+        List<Rule> rules = new ArrayList<>();
+        repRule.findAll().forEach(rules::add);
+        return rules;
     }
 
     public Rule getRule(int id) {
-        return repository.getRule(id);
+        return repRule.findById(id).get();
     }
 
+    @Transactional
     public void save(Rule rule) {
-        repository.save(rule);
+        repRule.save(rule);
     }
 
     public boolean remove(Rule rule) {
-        return repository.remove(rule);
+        repRule.delete(rule);
+        return true;
     }
 }
