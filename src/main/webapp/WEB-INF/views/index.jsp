@@ -23,6 +23,9 @@
     <title>Accident</title>
 </head>
 <body>
+<div>
+    Login as : ${user.username}
+</div>
     <br>
     <a href="<c:url value='/create'/>">Добавить инцидент</a>
     <table class="table">
