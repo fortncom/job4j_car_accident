@@ -23,6 +23,7 @@
     <title>Accident</title>
 </head>
 <body>
+<a href="<c:url value='/reg'/>">Регистрация</a>
 <div>
     Login as : ${user.username}
 </div>
