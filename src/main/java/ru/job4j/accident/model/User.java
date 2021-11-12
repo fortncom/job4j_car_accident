@@ -3,7 +3,7 @@ package ru.job4j.accident.model;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
+@Entity(name = "users")
 @Table(name = "users")
 public class User {
     @Id
@@ -12,6 +12,7 @@ public class User {
 
     private String password;
 
+    @Column(unique = true)
     private String username;
 
     @ManyToOne
