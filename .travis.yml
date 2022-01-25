@@ -2,6 +2,12 @@ language: java
 jdk:
   - openjdk14
 
+env:
+  global:
+    - CODECOV_TOKEN="aa952fa8-4449-4411-a979-6d384e471f0c"
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 
 notifications:
   email:
